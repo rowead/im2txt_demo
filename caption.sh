@@ -18,11 +18,11 @@ done
 
 if [ ! -z "$FILE" ]; then
   hash=$(printf '%s' $FILE | md5sum | cut -d ' ' -f 1)
-  cp $FILE imgs/tmp/${hash}
+  cp $FILE imgs/${hash}
 fi
 
 if [ ! -z "$URL" ]; then
   hash=$(printf '%s' $URL | md5sum | cut -d ' ' -f 1)
-  curl -s $URL  > imgs/tmp/${hash}
+  curl -s $URL  > imgs/${hash}
 fi
 docker run -i --rm=true -v $(pwd):/root --name=im2txt_demo im2txt_demo ./process_image.sh ${hash}
